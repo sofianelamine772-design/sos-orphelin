@@ -1,0 +1,278 @@
+/* Modern Islamic Home Page Styling */
+.home-page {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    /* Guarantee spacing below the buttons */
+    /* Clear fixed navbar */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(250, 250, 250, 0.2) 0%, rgba(250, 250, 250, 0.75) 100%);
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-6);
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+.hero-cta {
+    display: flex;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-4);
+}
+
+.btn-lg {
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: 1.125rem;
+}
+
+@media (max-width: 600px) {
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 120px;
+        /* More space at the bottom on mobile */
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--spacing-3);
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+    }
+}
+
+/* Quote Section */
+.section-quote {
+    background: linear-gradient(180deg, var(--color-primary) 0%, #011611 100%);
+    position: relative;
+    margin-top: calc(var(--spacing-8) * -1);
+    z-index: 20;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    padding-bottom: var(--spacing-16);
+    box-shadow: var(--shadow-xl);
+}
+
+.quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-8) var(--spacing-12);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .section-quote {
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        padding-bottom: var(--spacing-12);
+    }
+
+    .quote-container {
+        padding: var(--spacing-4) var(--spacing-6);
+    }
+
+    .arabic-text {
+        font-size: 2rem;
+    }
+
+    .quote-translation {
+        font-size: 1.1rem;
+    }
+}
+
+.arabic-text {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-accent) !important;
+}
+
+.quote-translation {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: var(--spacing-4);
+}
+
+.quote-source {
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+}
+
+/* Mission Section */
+.bg-elevated {
+    background-color: var(--color-surface);
+}
+
+.mission-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-16);
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-4);
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-8);
+}
+
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feature-card {
+    padding: var(--spacing-8);
+    background-color: var(--color-background);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-surface-elevated);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.feature-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.15), 0 10px 10px -5px rgba(5, 150, 105, 0.05);
+    border-color: rgba(5, 150, 105, 0.4);
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--spacing-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-surface-elevated);
+    color: var(--color-secondary);
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    background-color: var(--color-secondary);
+    color: var(--color-surface);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-4);
+}
+
+/* Impact Section */
+.section-impact {
+    background-color: var(--color-background);
+}
+
+.impact-modern-card {
+    background: var(--color-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-16) var(--spacing-8);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.impact-modern-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.impact-content {
+    position: relative;
+    z-index: 10;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.impact-content h2 {
+    color: var(--color-text-light);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--spacing-6);
+}
+
+.impact-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-8);
+}

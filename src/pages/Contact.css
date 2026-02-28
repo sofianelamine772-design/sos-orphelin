@@ -1,0 +1,168 @@
+/* Contact Page Specific Styling */
+
+.contact-header {
+    background: var(--color-surface);
+    border-bottom: 2px solid var(--color-surface-elevated);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-16);
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-12);
+    }
+}
+
+.contact-info-col h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-primary);
+}
+
+.contact-intro {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-8);
+}
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-surface-elevated);
+    color: var(--color-secondary);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-text h4 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-1);
+    color: var(--color-text-main);
+}
+
+.info-text p {
+    color: var(--color-text-muted);
+}
+
+.donation-box {
+    background: var(--color-primary);
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-secondary);
+    text-align: center;
+}
+
+.donation-box h3 {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-2);
+}
+
+.donation-box p {
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.donation-box .btn {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    box-shadow: none;
+}
+
+.donation-box .btn:hover {
+    background-color: #FBBF24;
+}
+
+/* Contact Form */
+.contact-form-col {
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-surface-elevated);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-form-col h3 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-6);
+    color: var(--color-primary);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-2);
+    color: var(--color-text-main);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 1px solid var(--color-surface-elevated);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--color-background);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-4);
+    padding: var(--spacing-4) var(--spacing-8);
+}
