@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import { ShieldAlert, BookOpen, Utensils, HeartPulse, HeartHandshake, Sun } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { BookOpen, Utensils, HeartPulse, HeartHandshake, Sun } from 'lucide-react';
 import './Actions.css';
 import heroImage from '../assets/islamic_charity_hero.png';
 
 const Actions = () => {
-    const containerVariants: any = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -12,7 +12,7 @@ const Actions = () => {
         }
     };
 
-    const itemVariants: any = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
     };
@@ -38,13 +38,6 @@ const Actions = () => {
             title: "Soins & Santé",
             desc: "Accompagnement médical : paiement de consultations, médicaments et soins spécialisés pour les enfants et les mères isolées.",
             color: "var(--color-accent)"
-        },
-        {
-            id: 4,
-            icon: <ShieldAlert size={40} />,
-            title: "Logement & Stabilité",
-            desc: "Aide au loyer d'urgence et aménagement des lieux de vie. Offrir un foyer sûr et digne à une veuve est une grande aumône.",
-            color: "var(--color-text-muted)"
         },
         {
             id: 5,
