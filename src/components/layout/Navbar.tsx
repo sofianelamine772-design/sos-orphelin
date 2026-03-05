@@ -1,14 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import logoImage from '../../assets/logosansfond.png';
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
-    const [currentLang, setCurrentLang] = useState('fr');
+    const [currentLang] = useState(() => {
+        const match = document.cookie.match(/googtrans=\/fr\/([a-z]{2})/);
+        return match && match[1] ? match[1] : 'fr';
+    });
     const location = useLocation();
+    const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
+    const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,19 +21,31 @@ const Navbar = () => {
         };
         window.addEventListener('scroll', handleScroll);
 
-        // check active translation
-        const match = document.cookie.match(/googtrans=\/fr\/([a-z]{2})/);
-        if (match && match[1]) {
-            setCurrentLang(match[1]);
-        }
-
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     useEffect(() => {
-        setMobileMenuOpen(false);
-        setLangMenuOpen(false);
-    }, [location.pathname]);
+        if (!mobileMenuOpen) {
+            document.body.style.overflow = '';
+            return;
+        }
+
+        document.body.style.overflow = 'hidden';
+        firstMobileLinkRef.current?.focus();
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setMobileMenuOpen(false);
+                mobileMenuButtonRef.current?.focus();
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
 
     const changeLanguage = (langCode: string) => {
         if (langCode === 'fr') {
@@ -56,6 +73,8 @@ const Navbar = () => {
                     to="/"
                     className="brand"
                     onClick={() => {
+                        setMobileMenuOpen(false);
+                        setLangMenuOpen(false);
                         if (location.pathname === '/') {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
@@ -74,6 +93,10 @@ const Navbar = () => {
                                 <Link
                                     to={link.path}
                                     className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setLangMenuOpen(false);
+                                    }}
                                 >
                                     {link.name}
                                 </Link>
@@ -104,45 +127,62 @@ const Navbar = () => {
 
                 <button
                     className="mobile-menu-btn md:hidden"
+                    ref={mobileMenuButtonRef}
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+                    aria-expanded={mobileMenuOpen}
+                    aria-controls="mobile-menu"
                 >
                     {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
             {/* Mobile Menu */}
-            <div className={`mobile-nav md:hidden ${mobileMenuOpen ? 'open' : ''}`}>
-                <ul className="mobile-nav-list">
-                    {navLinks.map((link) => (
-                        <li key={link.path}>
-                            <Link
-                                to={link.path}
-                                className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                            >
-                                {link.name}
+            <div className={`mobile-nav-overlay md:hidden ${mobileMenuOpen ? 'open' : ''}`} aria-hidden={!mobileMenuOpen}>
+                <button className="mobile-nav-backdrop" onClick={() => setMobileMenuOpen(false)} tabIndex={-1} aria-label="Fermer" />
+                <div id="mobile-menu" className="mobile-nav-drawer" role="dialog" aria-modal="true">
+                    <div className="mobile-nav-header">
+                        <span className="mobile-nav-title">Menu</span>
+                        <button className="mobile-nav-close" onClick={() => setMobileMenuOpen(false)} aria-label="Fermer le menu">
+                            <X size={22} />
+                        </button>
+                    </div>
+                    <ul className="mobile-nav-list">
+                        {navLinks.map((link, idx) => (
+                            <li key={link.path}>
+                                <Link
+                                    to={link.path}
+                                    ref={idx === 0 ? firstMobileLinkRef : undefined}
+                                    className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setLangMenuOpen(false);
+                                    }}
+                                >
+                                    {link.name}
+                                </Link>
+                            </li>
+                        ))}
+
+                        <li className="mobile-lang-section">
+                            <div className="mobile-lang-header">
+                                <Globe size={20} />
+                                <span>Langue / Language / لغة</span>
+                            </div>
+                            <div className="mobile-lang-options">
+                                <button className={`mobile-lang-btn ${currentLang === 'fr' ? 'active' : ''}`} onClick={() => changeLanguage('fr')}>🇫🇷 FR</button>
+                                <button className={`mobile-lang-btn ${currentLang === 'en' ? 'active' : ''}`} onClick={() => changeLanguage('en')}>🇬🇧 EN</button>
+                                <button className={`mobile-lang-btn ${currentLang === 'ar' ? 'active' : ''}`} onClick={() => changeLanguage('ar')}>🇸🇦 AR</button>
+                            </div>
+                        </li>
+
+                        <li className="mobile-nav-item-cta">
+                            <Link to="/don" className="btn btn-primary w-full text-center">
+                                Faire un don
                             </Link>
                         </li>
-                    ))}
-
-                    {/* Mobile Language Switcher */}
-                    <li className="mobile-lang-section">
-                        <div className="mobile-lang-header">
-                            <Globe size={20} />
-                            <span>Langue / Language / لغة</span>
-                        </div>
-                        <div className="mobile-lang-options">
-                            <button className={`mobile-lang-btn ${currentLang === 'fr' ? 'active' : ''}`} onClick={() => changeLanguage('fr')}>🇫🇷 FR</button>
-                            <button className={`mobile-lang-btn ${currentLang === 'en' ? 'active' : ''}`} onClick={() => changeLanguage('en')}>🇬🇧 EN</button>
-                            <button className={`mobile-lang-btn ${currentLang === 'ar' ? 'active' : ''}`} onClick={() => changeLanguage('ar')}>🇸🇦 AR</button>
-                        </div>
-                    </li>
-
-                    <li className="mobile-nav-item-cta">
-                        <Link to="/contact" className="btn btn-primary w-full text-center">
-                            Faire un don
-                        </Link>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </header>
     );
