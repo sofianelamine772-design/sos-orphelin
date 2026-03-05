@@ -86,7 +86,7 @@ const Navbar = () => {
                     </span>
                 </Link>
 
-                <nav className="desktop-nav hidden md:flex">
+                <nav className="desktop-nav">
                     <ul className="nav-list">
                         {navLinks.map((link) => (
                             <li key={link.path}>
@@ -126,7 +126,7 @@ const Navbar = () => {
                 </nav>
 
                 <button
-                    className="mobile-menu-btn md:hidden"
+                    className="mobile-menu-btn"
                     ref={mobileMenuButtonRef}
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -138,7 +138,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`mobile-nav-overlay md:hidden ${mobileMenuOpen ? 'open' : ''}`} aria-hidden={!mobileMenuOpen}>
+            <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`} aria-hidden={!mobileMenuOpen}>
                 <button className="mobile-nav-backdrop" onClick={() => setMobileMenuOpen(false)} tabIndex={-1} aria-label="Fermer" />
                 <div id="mobile-menu" className="mobile-nav-drawer" role="dialog" aria-modal="true">
                     <div className="mobile-nav-header">
