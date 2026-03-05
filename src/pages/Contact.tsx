@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import './Contact.css';
+import heroImage from '../assets/islamic_charity_hero.png';
 
 const Contact = () => {
     const fadeInUp: any = {
@@ -11,8 +12,9 @@ const Contact = () => {
 
     return (
         <div className="contact-page">
-            <div className="page-header contact-header">
-                <div className="container">
+            <div className="page-header contact-header page-header-bg" style={{ backgroundImage: `url(${heroImage})` }}>
+                <div className="page-header-overlay"></div>
+                <div className="container page-header-content">
                     <motion.h1
                         className="page-title text-center"
                         initial={{ opacity: 0, y: -20 }}

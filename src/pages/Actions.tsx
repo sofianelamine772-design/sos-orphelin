@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ShieldAlert, BookOpen, Utensils, HeartPulse, HeartHandshake, Sun } from 'lucide-react';
 import './Actions.css';
+import heroImage from '../assets/islamic_charity_hero.png';
 
 const Actions = () => {
     const containerVariants: any = {
@@ -63,8 +64,9 @@ const Actions = () => {
 
     return (
         <div className="actions-page">
-            <div className="page-header actions-header">
-                <div className="container">
+            <div className="page-header actions-header page-header-bg" style={{ backgroundImage: `url(${heroImage})` }}>
+                <div className="page-header-overlay"></div>
+                <div className="container page-header-content">
                     <motion.h1
                         className="page-title text-center"
                         initial={{ opacity: 0, scale: 0.95 }}

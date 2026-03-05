@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Moon, BookOpen, Quote, Shield } from 'lucide-react';
 import './About.css';
+import aboutBgImage from '../assets/three-children-making-holding-their-hands-together.jpg';
 
 const About = () => {
     const fadeInUp: any = {
@@ -10,8 +11,9 @@ const About = () => {
 
     return (
         <div className="about-page">
-            <div className="page-header">
-                <div className="container">
+            <div className="page-header page-header-bg" style={{ backgroundImage: `url(${aboutBgImage})` }}>
+                <div className="page-header-overlay"></div>
+                <div className="container page-header-content">
                     <motion.h1
                         className="page-title text-center"
                         initial={{ opacity: 0, y: 30 }}

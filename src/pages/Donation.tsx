@@ -5,6 +5,7 @@ import paypalImage from '../assets/paypal.png';
 import helloassoImage from '../assets/helloasso.png';
 import cbImage from '../assets/payementaveccb.svg';
 import './Donation.css';
+import heroImage from '../assets/islamic_charity_hero.png';
 
 const Donation = () => {
     const fadeInUp = {
@@ -22,8 +23,9 @@ const Donation = () => {
 
     return (
         <div className="donation-page">
-            <div className="page-header contact-header">
-                <div className="container">
+            <div className="page-header contact-header page-header-bg" style={{ backgroundImage: `url(${heroImage})` }}>
+                <div className="page-header-overlay"></div>
+                <div className="container page-header-content">
                     <motion.h1
                         className="page-title text-center"
                         initial={{ opacity: 0, y: -20 }}

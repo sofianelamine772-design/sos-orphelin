@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
+import heroImage from '../assets/islamic_charity_hero.png';
 
 const LegalNotice = () => {
     return (
         <div className="legal-page">
-            <div className="page-header contact-header">
-                <div className="container">
+            <div className="page-header contact-header page-header-bg" style={{ backgroundImage: `url(${heroImage})` }}>
+                <div className="page-header-overlay"></div>
+                <div className="container page-header-content">
                     <motion.h1
                         className="page-title text-center"
                         initial={{ opacity: 0, y: -20 }}
